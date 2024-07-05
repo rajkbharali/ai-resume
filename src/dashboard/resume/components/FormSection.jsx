@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import PersonalDetail from "./forms/PersonalDetail";
 import { ArrowLeft, ArrowRight, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Summery from "./forms/Summery";
+import Experience from "./forms/Experience";
 
 const FormSection = () => {
-  const [activeFormIndex, setActiveFormIndex] = useState(2);
+  const [activeFormIndex, setActiveFormIndex] = useState(1);
+  const [enableNext, setEnableNext] = useState(true);
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -23,6 +26,7 @@ const FormSection = () => {
             </Button>
           )}
           <Button
+            disabled={!enableNext}
             className="flex gap-2"
             size="sm"
             onClick={() => setActiveFormIndex(activeFormIndex + 1)}
@@ -32,7 +36,14 @@ const FormSection = () => {
         </div>
       </div>
       {/* personal Details */}
-      <PersonalDetail />
+      {activeFormIndex === 1 ? (
+        <PersonalDetail enableNext={(v) => setEnableNext(v)} />
+      ) : activeFormIndex === 2 ? (
+        <Summery enableNext={(v) => setEnableNext(v)} />
+      ) : activeFormIndex === 3 ? (
+        <Experience enableNext={(v) => setEnableNext(v)} />
+      ) : null}
+      {/* <PersonalDetail /> */}
 
       {/* summary */}
 
