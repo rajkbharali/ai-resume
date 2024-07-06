@@ -21,7 +21,9 @@ const EducationalPreview = ({ resumeInfo }) => {
           <h2 className="text-xs flex justify-between">
             {education?.degree} in {education?.major}
             <span>
-              {education?.startDate} - {education?.endDate}
+              {education?.startDate}
+              <span style={{ color: resumeInfo?.themeColor }}>---</span>{" "}
+              {education?.endDate}
             </span>
           </h2>
           <p className="text-xs my-2">{education?.description}</p>

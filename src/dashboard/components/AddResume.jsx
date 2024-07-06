@@ -41,7 +41,7 @@ const AddResume = () => {
         // console.log(res);
         if (res) {
           setLoading(false);
-          navigate("/dashboard/resume/" + res.data.data.documentId + "/edit");
+          navigate("/dashboard/resume/" + res.data.data.id + "/edit");
         }
       },
       (error) => {

@@ -22,10 +22,10 @@ import { toast } from "sonner";
 import { ResumeInfoContext } from "@/context/ResumeInfoContext";
 
 const PROMPT =
-  "position titile: {positionTitle} , Depending on position title give me 5-7 bullet points for my experience in an array";
+  "position titile: {positionTitle} , Depending on position title give me 5-7 bullet points for my experience in an array with big bullet dot at start of every point";
 
 const RichTextEditor = ({ index, onRichTextEditorChange, defaultValue }) => {
-  console.log(defaultValue);
+  // console.log(defaultValue);
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
   const [value, setValue] = useState(defaultValue);
   const [loading, setLoading] = useState(false);
@@ -42,7 +42,7 @@ const RichTextEditor = ({ index, onRichTextEditorChange, defaultValue }) => {
       resumeInfo.experience[index].title
     );
     const result = await AIChatSession.sendMessage(prompt);
-    console.log(result.response.text());
+    // console.log(result.response.text());
     setValue(JSON.parse(result.response.text()).join("\n"));
 
     // const resp = result.response.text();
