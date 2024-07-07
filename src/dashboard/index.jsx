@@ -26,10 +26,20 @@ const Dashboard = () => {
       <p>Start creating your next resume</p>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-10 gap-5">
         <AddResume />
-        {resumeList.length > 0 &&
-          resumeList.map((resume, index) => (
-            <ResumeCardItems resume={resume} key={index} />
-          ))}
+        {resumeList.length > 0
+          ? resumeList.map((resume, index) => (
+              <ResumeCardItems
+                resume={resume}
+                key={index}
+                refreshData={getResumeList}
+              />
+            ))
+          : [1, 2, 3, 4].map((item, index) => (
+              <div
+                key={index}
+                className="h-[280px] rounded-lg bg-slate-200 animate-pulse"
+              ></div>
+            ))}
       </div>
     </div>
   );

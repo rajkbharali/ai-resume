@@ -8,20 +8,30 @@ import { LoaderCircle } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { toast } from "sonner";
 
-const formField = {
-  title: "",
-  companyName: "",
-  city: "",
-  state: "",
-  startDate: "",
-  endDate: "",
-  workSummery: "",
-};
+// const formField = {
+//   title: "",
+//   companyName: "",
+//   city: "",
+//   state: "",
+//   startDate: "",
+//   endDate: "",
+//   workSummery: "",
+// };
 const Experience = () => {
   const { resumeInfo, setResumeInfo } = useContext(ResumeInfoContext);
   const params = useParams();
 
-  const [experiencedField, setExperiencedField] = useState([]);
+  const [experiencedField, setExperiencedField] = useState([
+    {
+      title: "",
+      companyName: "",
+      city: "",
+      state: "",
+      startDate: "",
+      endDate: "",
+      workSummery: "",
+    },
+  ]);
   const [loading, setLoading] = useState(false);
 
   const handleChange = (index, e) => {
@@ -32,7 +42,18 @@ const Experience = () => {
   };
 
   const AddNewExperience = () => {
-    setExperiencedField([...experiencedField, formField]);
+    setExperiencedField([
+      ...experiencedField,
+      {
+        title: "",
+        companyName: "",
+        city: "",
+        state: "",
+        startDate: "",
+        endDate: "",
+        workSummery: "",
+      },
+    ]);
   };
 
   const RemoveExperience = () => {
@@ -153,7 +174,7 @@ const Experience = () => {
           ))}
         </div>
         <div className="flex justify-between">
-          <div className="flex gap-2">
+          <div className="flex gap-2 mt-2">
             <Button
               variant="outline"
               className="text-primary"
@@ -161,14 +182,18 @@ const Experience = () => {
             >
               + Add More Experience
             </Button>
-            <Button
-              disabled={experiencedField.length === 1}
-              variant="outline"
-              className="text-primary"
-              onClick={RemoveExperience}
-            >
-              Remove
-            </Button>
+            {experiencedField.length > 1 ? (
+              <Button
+                // disabled={experiencedField.length === 1}
+                variant="outline"
+                className="text-primary"
+                onClick={RemoveExperience}
+              >
+                Remove
+              </Button>
+            ) : (
+              ""
+            )}
           </div>
           <Button disabled={loading} onClick={() => onSave()}>
             {loading ? <LoaderCircle className="animate-spin" /> : "Save"}

@@ -64,7 +64,7 @@ const Education = () => {
       },
       (error) => {
         setLoading(false);
-        toast("Something went wrong.Please try again");
+        toast("Something went wrong,Please Try again");
       }
     );
   };
@@ -87,7 +87,7 @@ const Education = () => {
         <p>Add your educational qualification</p>
         <div>
           {educationalList.map((item, index) => (
-            <div>
+            <div key={index}>
               <div className="grid grid-cols-2 gap-3 p-3 my-5 rounded-lg">
                 <div className="col-span-2">
                   <label className="text-xs">University Name</label>
@@ -152,14 +152,18 @@ const Education = () => {
             >
               + Add More Education
             </Button>
-            <Button
-              disabled={educationalList.length === 1}
-              variant="outline"
-              className="text-primary"
-              onClick={RemoveEducation}
-            >
-              Remove
-            </Button>
+            {educationalList.length > 1 ? (
+              <Button
+                // disabled={educationalList.length === 1}
+                variant="outline"
+                className="text-primary"
+                onClick={RemoveEducation}
+              >
+                Remove
+              </Button>
+            ) : (
+              ""
+            )}
           </div>
           <Button disabled={loading} onClick={() => onSave()}>
             {loading ? <LoaderCircle className="animate-spin" /> : "Save"}
